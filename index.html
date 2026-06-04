@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Venus Lai — Character Design, Animation & Illustration Portfolio" />
+  <title>Venus Lai | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            night: {
+              deep: '#0a0f1f',
+              mid: '#141b33',
+              soft: '#1c2541',
+              glow: '#2a3358',
+            },
+            wood: {
+              DEFAULT: '#5c4a3a',
+              light: '#8b7355',
+              dark: '#3d3228',
+            },
+            star: {
+              white: '#f4f0e8',
+              dim: '#c8d4e8',
+              accent: '#a8b8d8',
+            },
+            mist: '#97aef7',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="font-sans text-star-white antialiased bg-night-deep">
+
+  <!-- Header -->
+  <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-night-deep/85 backdrop-blur-md">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-[4.25rem] md:px-8 lg:px-12">
+      <a href="#" class="logo-group flex shrink-0 items-center gap-2.5" aria-label="Venus Lai Home">
+        <svg class="logo-mark h-9 w-9" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2" class="text-star-white/90"/>
+          <path d="M20 9L22.5 25L20 21L17.5 25L20 9Z" fill="currentColor" class="text-star-white"/>
+          <circle cx="29" cy="13" r="1.4" fill="currentColor" class="text-mist"/>
+          <path d="M8 28 Q20 32 32 28" stroke="currentColor" stroke-width="0.8" class="text-wood-light/60" fill="none"/>
+        </svg>
+        <span class="font-display text-lg font-semibold tracking-wide text-star-white md:text-xl">Venus Lai</span>
+      </a>
+
+      <nav class="hidden flex-1 justify-center md:flex" aria-label="Main navigation">
+        <ul class="flex items-center gap-10">
+          <li><a href="#" class="nav-link nav-link--active" data-nav="home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-nav="about">About Me</a></li>
+          <li><a href="#works" class="nav-link" data-nav="works">Works</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-3 md:gap-5">
+        <button type="button" id="search-btn" class="icon-btn" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
+          <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="10" cy="10" r="7"/>
+            <path d="M16 16L20 20" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="#footer" class="contact-pill hidden md:inline-flex">Contact</a>
+        <button type="button" id="menu-toggle" class="icon-btn md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger" aria-hidden="true">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
+      <nav class="flex flex-col items-center gap-8 pt-24" aria-label="Mobile navigation">
+        <a href="#" class="mobile-nav-link text-2xl" data-nav="home">Home</a>
+        <a href="#about" class="mobile-nav-link text-2xl" data-nav="about">About Me</a>
+        <a href="#works" class="mobile-nav-link text-2xl" data-nav="works">Works</a>
+        <a href="#footer" class="mobile-nav-link text-xl text-mist">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search overlay -->
+  <div id="search-panel" class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-hidden="true">
+    <div class="search-panel__backdrop" data-close-search></div>
+    <div class="search-panel__box">
+      <h2 id="search-title" class="sr-only">Search portfolio</h2>
+      <div class="relative">
+        <input type="search" id="search-input" placeholder="Search works, illustrations…" class="search-input" autocomplete="off" />
+        <button type="button" class="search-close" data-close-search aria-label="Close search">×</button>
+      </div>
+      <p id="search-hint" class="mt-3 text-sm text-star-dim/70">Try: character, animation, illustration</p>
+      <ul id="search-results" class="search-results mt-4 hidden"></ul>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="hero relative min-h-[88vh] flex items-center justify-center overflow-hidden pt-16">
+      <div class="hero__bg absolute inset-0" role="presentation"></div>
+      <div class="hero__gradient absolute inset-0" aria-hidden="true"></div>
+      <canvas id="starfield" class="absolute inset-0 h-full w-full pointer-events-none opacity-90" aria-hidden="true"></canvas>
+      <div class="hero__content relative z-10 mx-auto max-w-3xl px-6 py-24 text-center md:py-32">
+        <p class="hero__eyebrow mb-4 text-sm font-medium uppercase tracking-[0.35em] text-star-dim/90">Animation · Illustration · Design</p>
+        <h1 class="font-display text-4xl font-semibold leading-[1.15] text-star-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-[3.5rem]">
+          Stories under a<br /><span class="italic text-mist/95">dreamy night sky</span>
+        </h1>
+        <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-star-dim/95 md:text-lg">
+          Welcome — I'm Venus Lai. I craft gentle characters, motion, and watercolor worlds with clarity and warmth.
+        </p>
+        <a href="#works" class="cta-button mt-10 inline-flex items-center gap-2">
+          <span>My Portfolio</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="hero__line absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-wood-light/30 to-transparent" aria-hidden="true"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section about-section relative py-20 md:py-28">
+      <div class="section__inner mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2 md:gap-16 lg:px-8">
+        <div class="about-visual order-2 md:order-1 flex justify-center">
+          <div class="about-frame relative w-full max-w-[280px] sm:max-w-xs">
+            <div class="about-frame__glow absolute -inset-3 rounded-3xl bg-mist/10 blur-2xl" aria-hidden="true"></div>
+            <div class="about-frame__inner overflow-hidden rounded-2xl border border-white/10 bg-night-mid/50 shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Venus Lai — whimsical portrait illustration style" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" width="400" height="500" loading="lazy" />
+            </div>
+            <svg class="about-deco absolute -right-4 -top-4 h-8 w-8 text-star-white/60" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l1.8 5.5L19 9l-5.2 1.5L12 16l-1.8-5.5L5 9l5.2-1.5L12 2z"/></svg>
+          </div>
+        </div>
+        <div class="order-1 md:order-2">
+          <span class="section-label">About Me</span>
+          <h2 class="font-display mt-2 text-3xl font-semibold text-star-white md:text-4xl">Creative, adaptable, globally minded</h2>
+          <p class="mt-6 text-base leading-[1.85] text-star-dim/90 md:text-lg">
+            Adaptable and creative professional with a degree in Animation and visual effects. Have diverse hands-on experience across public service, special educational needs support and theme park operations. Skilled at translating complex ideas into engaging visual and verbal communication. A global mindset strengthened by a one-year working holiday program in Japan.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="skill-tag">Character Design</span>
+            <span class="skill-tag">Animation</span>
+            <span class="skill-tag">Illustration</span>
+            <span class="skill-tag">Visual Communication</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section id="featured" class="section py-16 md:py-24">
+      <div class="section__inner mx-auto max-w-6xl px-6 lg:px-8">
+        <div class="text-center">
+          <span class="section-label">Explore</span>
+          <h2 class="font-display mt-2 text-3xl font-semibold text-star-white md:text-4xl">Featured Categories</h2>
+          <p class="mx-auto mt-3 max-w-lg text-star-dim/80">Four pillars of my practice — each with its own rhythm of line, color, and motion.</p>
+        </div>
+        <div id="featured-grid" class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"></div>
+      </div>
+    </section>
+
+    <!-- Works -->
+    <section id="works" class="section py-16 md:py-24">
+      <div class="section__inner mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="flex flex-col items-center text-center sm:flex-row sm:justify-between sm:text-left">
+          <div>
+            <span class="section-label">Portfolio</span>
+            <h2 class="font-display mt-2 text-3xl font-semibold text-star-white md:text-4xl">Works</h2>
+          </div>
+          <p class="mt-3 max-w-md text-sm text-star-dim/75 sm:mt-8 sm:text-right">Hover cards to reveal alternate views</p>
+        </div>
+        <div id="works-grid" class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7"></div>
+      </div>
+    </section>
+
+    <!-- Illustrations -->
+    <section id="illustrations" class="section py-16 md:pb-28">
+      <div class="section__inner mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="text-center">
+          <span class="section-label">Gallery</span>
+          <h2 class="font-display mt-2 text-3xl font-semibold text-star-white md:text-4xl">Illustrations</h2>
+        </div>
+        <div id="illustrations-grid" class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer border-t border-white/8 bg-night-deep/95 py-12">
+    <div class="mx-auto max-w-6xl px-6 lg:px-8">
+      <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <div>
+          <a href="#" class="font-display text-xl font-semibold text-star-white">Venus Lai</a>
+          <p class="mt-2 max-w-xs text-sm text-star-dim/70">Character design, animation & illustration — crafted with care under quiet skies.</p>
+        </div>
+        <nav aria-label="Footer sitemap" class="footer-sitemap">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-wood-light/80">Sitemap</p>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <li><a href="#" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About Me</a></li>
+            <li><a href="#works" class="footer-link">Works</a></li>
+            <li><a href="#featured" class="footer-link">Categories</a></li>
+            <li><a href="#illustrations" class="footer-link">Illustrations</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-wood-light/80">Connect</p>
+          <div class="flex flex-col gap-3 text-sm">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="footer-social inline-flex items-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6.01 4.9.07 1.2.06 2.1.25 2.6.42.6.23 1.02.5 1.47.95.45.44.71.87.94 1.46.17.49.37 1.38.43 2.61.06 1.3.07 1.7.07 4.9s-.01 3.6-.07 4.91-.06 1.24-.26 2.13-.43 2.64-.23.59-.5 1.01-.94 1.46-.45.45-.87.71-1.47.93-.51.18-1.39.37-2.63.43-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-1.23-.06-2.11-.25-2.64-.43-.6-.22-1.02-.48-1.46-.93-.44-.45-.7-.87-.93-1.46-.18-.51-.37-1.4-.43-2.62-.06-1.23-.07-1.61-.07-4.9 0-3.22.01-3.62.07-4.9.06-1.23.25-2.12.43-2.61.22-.59.48-1.02.93-1.46.44-.45.86-.72 1.46-.95.52-.18 1.41-.36 2.64-.42 1.3-.06 1.7-.07 4.9-.07zm0 1.8a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 1.8a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.4-.8a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+              Instagram
+            </a>
+            <a href="mailto:lkkv1936@gmail.com" class="footer-link">lkkv1936@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <p class="mt-10 border-t border-white/5 pt-6 text-center text-xs text-star-dim/50">
+        © <span id="year"></span> Venus Lai. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
